@@ -1,7 +1,7 @@
 <x-layout>
     
         <div class="container py-md-5 container--narrow">
-          <form action="/create-post" method="POST">
+          <form action="/create-post" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
               <label for="post-title" class="text-muted mb-1"><small>Title</small></label>
@@ -19,7 +19,12 @@
               @enderror
             </div>
     
-            <button class="btn btn-primary">Save New Post</button>
+            <div class="form-group">
+              <label for="post-pdf" class="text-muted mb-1"><small>Upload PDF</small></label>
+              <input type="file" name="pdf" id="post-pdf" class="form-control pb-5" accept=".pdf">
+          </div>
+      
+          <button class="btn btn-primary">Save New Post</button>
           </form>
         </div>
 

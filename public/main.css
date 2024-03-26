@@ -6,7 +6,7 @@ body,
 }
 
 .header-bar {
-  background-color: #f9322c;
+  background-color: #2e2e2e;
 }
 
 .container--narrow {
@@ -387,4 +387,12 @@ textarea.tall-textarea {
   border: none;
   outline: none;
   font-size: 0.75rem;
+}
+
+
+.box{
+  border-radius: 10px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow:  6px 6px 12px #c5c5c5,
+              -6px -6px 12px #fbfbfb;
 }

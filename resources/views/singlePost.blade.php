@@ -19,60 +19,65 @@
       </div>
 
       <p class="text-muted small mb-4">
-        <a href="#"><img class="avatar-tiny" src="https://gravatar.com/avatar/f64fc44c03a8a7eb1d52502950879659?s=128" /></a>
-        Posted by <a href="#">{{$post->userForeign->username}}</a> on {{$post->created_at->format('n/j/Y')}}
+        <a href="#"><img class="avatar-tiny" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_640.png" /></a>
+        {{-- Posted by <a href="#">{{$post->userForeign->username}}</a> on {{$post->created_at->format('n/j/Y')}} --}}
+        Posted by <a href="/profile/{{$post->userForeign->username}}">{{$post->userForeign->username}}</a> on {{$post->created_at->format('n/j/Y')}}
       </p>
+
+      
 
       <div class="body-content">
         <p>{{$post->body}}</p>
       </div>
+
+      @if($post->pdf_path)
+        <a class="btn btn-warning btn-sm" href="{{ Storage::url($post->pdf_path) }}" target="_blank">View PDF</a>
+      @endif
+      
     </div>
 
 
-    {{-- THIS IS DEMO COMMENT! NEEDS TO BE DELETED --}}
+
+
+
+
+
+
+
+     {{-- THIS IS DEMO COMMENT! NEEDS TO BE DELETED --}}
+
+     <div class="container py-md-5 container--narrow">
+      <form action="/post/{{$post->id}}/comments" method="POST">
+          @csrf
+          <div class="form-group">
+              <textarea class="form-control" name="body" required placeholder="Submit your task here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Task</button>
+      </form>
+    </div>
+
 
     <div class="container py-md-5 container--narrow">
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #1</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #2</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #3</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #4</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-    </div>
+      @foreach($post->comments as $comment)
+          <div class="card my-2">
+              <div class="card-body">
+                  <h5 class="card-title">Submission by <a href="/profile/{{ $comment->user->username }}">
+                    {{ $comment->user->username }}
+                </a></h5>
+                  <p class="card-text">{{ $comment->body }}</p>
+                  {{-- If you need these buttons for each comment, uncomment them
+                  <a href="#" class="btn btn-primary btn-sm">Details</a>
+                  <a href="#" class="btn btn-success btn-sm">Approve</a>
+                  <a href="#" class="btn btn-warning btn-sm">Reject</a>
+                  <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                  --}}
+              </div>
+          </div>
+      @endforeach
+  </div>
+  
+  
+
 
     
 </x-layout>

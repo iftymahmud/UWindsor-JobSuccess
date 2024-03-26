@@ -28,61 +28,62 @@
       </div>
 
       <p class="text-muted small mb-4">
-        <a href="#"><img class="avatar-tiny" src="https://gravatar.com/avatar/f64fc44c03a8a7eb1d52502950879659?s=128" /></a>
-        Posted by <a href="#"><?php echo e($post->userForeign->username); ?></a> on <?php echo e($post->created_at->format('n/j/Y')); ?>
+        <a href="#"><img class="avatar-tiny" src="https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_640.png" /></a>
+        
+        Posted by <a href="/profile/<?php echo e($post->userForeign->username); ?>"><?php echo e($post->userForeign->username); ?></a> on <?php echo e($post->created_at->format('n/j/Y')); ?>
 
       </p>
+
+      
 
       <div class="body-content">
         <p><?php echo e($post->body); ?></p>
       </div>
+
+      <?php if($post->pdf_path): ?>
+        <a class="btn btn-warning btn-sm" href="<?php echo e(Storage::url($post->pdf_path)); ?>" target="_blank">View PDF</a>
+      <?php endif; ?>
+      
     </div>
 
 
-    
+
+
+
+
+
+
+
+     
+
+     <div class="container py-md-5 container--narrow">
+      <form action="/post/<?php echo e($post->id); ?>/comments" method="POST">
+          <?php echo csrf_field(); ?>
+          <div class="form-group">
+              <textarea class="form-control" name="body" required placeholder="Submit your task here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit Task</button>
+      </form>
+    </div>
+
 
     <div class="container py-md-5 container--narrow">
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #1</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #2</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #3</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-      <div class="card my-2">
-        <div class="card-body">
-          <h5 class="card-title">Submission by Student #4</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas rutrum est urna, non eleifend augue euismod ullamcorper. Cras molestie nibh neque. Donec dui ante, rhoncus ut luctus aliquet, cursus euismod turpis.</p>
-          <a href="#" class="btn btn-primary btn-sm">Details</a>
-          <a href="#" class="btn btn-success btn-sm">Approve</a>
-          <a href="#" class="btn btn-warning btn-sm">Reject</a>
-          <a href="#" class="btn btn-danger btn-sm">Delete</a>
-        </div>
-      </div>
-    </div>
+      <?php $__currentLoopData = $post->comments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $comment): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <div class="card my-2">
+              <div class="card-body">
+                  <h5 class="card-title">Submission by <a href="/profile/<?php echo e($comment->user->username); ?>">
+                    <?php echo e($comment->user->username); ?>
+
+                </a></h5>
+                  <p class="card-text"><?php echo e($comment->body); ?></p>
+                  
+              </div>
+          </div>
+      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+  </div>
+  
+  
+
 
     
  <?php echo $__env->renderComponent(); ?>

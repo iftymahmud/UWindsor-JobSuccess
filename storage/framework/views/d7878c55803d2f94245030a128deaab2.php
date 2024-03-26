@@ -13,13 +13,8 @@
     <div class="container py-md-5">
       <div class="row align-items-center">
         <div class="col-lg-7 py-3 py-md-5">
-          <h1 class="display-5 py-2">Want To Secure Placement?</h1>
-          
-
-
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/caEJfM97zkE?si=PX_m_yi8z4tCM8n9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-          
+          <h1 class="display-3">Remember Writing?</h1>
+          <p class="lead text-muted">Are you sick of short tweets and impersonal &ldquo;shared&rdquo; posts that are reminiscent of the late 90&rsquo;s email forwards? We believe getting back to actually writing is the key to enjoying the internet again.</p>
         </div>
         <div class="col-lg-5 pl-lg-5 pb-3 py-lg-5">
           <form action="/register" method="POST" id="registration-form">
@@ -93,13 +88,11 @@ unset($__errorArgs, $__bag); ?>
 
             </div>
 
-            <button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for JobSuccess</button>
+            <button type="submit" class="py-3 mt-4 btn btn-lg btn-success btn-block">Sign up for OurApp</button>
           </form>
         </div>
       </div>
     </div>
-
-
 
 
  <?php echo $__env->renderComponent(); ?>
@@ -112,4 +105,4 @@ unset($__errorArgs, $__bag); ?>
 <?php $component = $__componentOriginal23a33f287873b564aaf305a1526eada4; ?>
 <?php unset($__componentOriginal23a33f287873b564aaf305a1526eada4); ?>
 <?php endif; ?>
-<?php /**PATH /Users/iftymahmud/Desktop/ase-project/resources/views/home.blade.php ENDPATH**/ ?>
+<?php /**PATH /Users/iftymahmud/Desktop/ASE PROJECT BACKUP/ase-project/resources/views/home.blade.php ENDPATH**/ ?>
