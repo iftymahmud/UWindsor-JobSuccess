@@ -32,5 +32,9 @@ Route::post('/post/{post}/comments', [PostController::class, 'storeComment'])->m
 
 Route::get('/resources', [PostController::class, 'resources'])->middleware('auth');
 
+Route::post('/comment/{comment}/star', [postController::class, 'starComment'])->middleware('auth');
+
+Route::delete('/comment/{comment}', [postController::class, 'destroyComment'])->name('comment.destroy');
+
 
 

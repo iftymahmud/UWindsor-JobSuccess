@@ -20,9 +20,14 @@
             </div>
     
             <div class="form-group">
-              <label for="post-pdf" class="text-muted mb-1"><small>Upload PDF</small></label>
+              <label for="post-pdf" class="text-muted mb-1"><small><i class="fa-solid fa-file-pdf"></i> Upload PDF</small></label>
               <input type="file" name="pdf" id="post-pdf" class="form-control pb-5" accept=".pdf">
           </div>
+
+          <div class="form-group">
+            <label for="post-url" class="text-muted mb-1"><small><i class="fa-solid fa-paperclip"></i> Add URL Resource</small></label>
+            <input name="url" id="post-url" class="form-control" type="text" placeholder="Enter URL" />
+        </div>
       
           <button class="btn btn-primary">Save New Post</button>
           </form>

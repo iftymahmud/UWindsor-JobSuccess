@@ -396,3 +396,54 @@ textarea.tall-textarea {
   box-shadow:  6px 6px 12px #c5c5c5,
               -6px -6px 12px #fbfbfb;
 }
+
+.box2{
+  border-radius: 10px;
+  background: linear-gradient(145deg, #383e44, #2f343a);
+  box-shadow:  6px 6px 12px #c5c5c5,
+              -6px -6px 12px #fbfbfb;
+}
+
+
+
+
+
+.btnbg{
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  border: none;
+}
+
+
+
+
+
+
+
+/* Text styling with typing effect */
+.typingEffectText {
+  width: 0;
+  border-right: 3px solid;
+  animation: blinkAnimation 1s step-end infinite, typingAnimation 2.5s steps(29) 2.5s forwards;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Blinking cursor effect */
+@keyframes blinkAnimation {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Typing effect */
+@keyframes typingAnimation {
+  from {
+    width: 0;
+  }
+  to {
+    width: 29ch;
+  }
+}
+
+
+

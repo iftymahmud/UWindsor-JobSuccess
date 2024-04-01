@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -9,7 +10,7 @@ class userController extends Controller
 {
 
     public function profile(User $profile){
-        return view('profilePosts',['username' => $profile->username, 'posts' => $profile->posts()->latest()->get(), 'postCount' => $profile->posts()->count()]);
+        return view('profilePosts',['user' => $profile, 'username' => $profile->username, 'posts' => $profile->posts()->latest()->get(), 'postCount' => $profile->posts()->count()]);
     }
 
     public function logout(){
@@ -19,8 +20,20 @@ class userController extends Controller
 
     public function showCorrectHome(){
         if(auth()->check()){
-            return view('homefeed');
-        }else{
+            $posts = Post::with('userForeign')->latest()->get(); // Existing logic
+    
+            // New logic to get top 3 students with most stars
+            $topStudents = User::withCount(['starsReceived' => function ($query) {
+                $query->distinct('comment_id');
+            }])->orderByDesc('stars_received_count')->take(3)->get();
+    
+            $topPosters = User::withCount('posts')
+                          ->orderByDesc('posts_count')
+                          ->take(3)
+                          ->get();
+
+            return view('homefeed', ['posts' => $posts, 'topStudents' => $topStudents, 'topPosters' => $topPosters]);
+        } else {
             return view('home');
         }
     }
@@ -43,7 +56,7 @@ class userController extends Controller
 
     public function register(Request $request){
         $incomingFields = $request->validate([
-            'username' => ['required','min:6','max:20', Rule::unique('users','username')],
+            'username' => ['required','min:4','max:20', Rule::unique('users','username')],
             'email' => ['required','email',Rule::unique('users','email')],
             'password' => ['required','min:8', 'confirmed']
         ]);

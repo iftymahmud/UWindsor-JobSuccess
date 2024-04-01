@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/main.css" />
   </head>
   <body>
@@ -47,8 +48,12 @@
         </form>
 
         @endauth
-        
+
+        <p class="btn btn-warning btn-sm mt-3 ml-2">
+          <a href="mailto:sales@jobsuccess.ca" style="color: inherit; text-decoration: none;">Contact Sales</a>
+      </p>
       </div>
+      
     </header>
     <!-- header ends here -->
 
